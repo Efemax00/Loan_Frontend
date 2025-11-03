@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Loans - dLearn Financial</title>
+
+  <!-- Existing Site Styles -->
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      color: #222;
+      background: #f9f9ff;
+    }
+
+    .loans-section {
+      padding: 100px 0;
+      background: #f9f9ff;
+    }
+
+    .loan-card {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+      max-width: 2000px;
+      margin: 0 auto;
+
+      /* 👇 Add these lines */
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+      white-space: normal;
+
+    }
+
+    .loan-card h3 {
+      font-size: 50px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #4a4aff;
+      color: #fff;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+      background: #f1f3ff;
+    }
+
+    .status {
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-align: center;
+      display: inline-block;
+      font-size: 13px;
+    }
+
+    .pending { background: #fff4e5; color: #a86b00; }
+    .approved { background: #e5fff1; color: #067d3e; }
+    .rejected { background: #ffe5e5; color: #b30000; }
+
+    .logout-btn {
+      float: right;
+      padding: 8px 16px;
+      border: none;
+      background: #4a4aff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: #2f2fbd;
+    }
+
+    @media (max-width: 768px) {
+      .loan-card { padding: 20px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      th { display: none; }
+      td {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: block;
+        color: #555;
+        margin-bottom: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-area header-transparent">
+      <div class="main-header header-sticky">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-xl-2 col-lg-2 col-md-1">
+              <div class="logo">
+                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+              </div>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10">
+              <div class="menu-main d-flex align-items-center justify-content-end">
+                <div class="main-menu f-right d-none d-lg-block">
+                  <nav>
+                    <ul id="navigation">
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="services.html">Services</a></li>
+                      <li class="active"><a href="myloans.html">My Loans</a></li>
+                      <li><a href="apply.html">Apply</a></li>
+                      <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="header-right-btn f-right d-none d-lg-block">
+                  <button id="logoutBtn" class="logout-btn">Logout</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="mobile_menu d-block d-lg-none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loans Table -->
+  <section class="loans-section">
+    <div class="container">
+      <div class="loan-card">
+        <h3>Your Loan Applications</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Purpose</th>
+              <th>Status</th>
+              <th>Date Applied</th>
+            </tr>
+          </thead>
+          <tbody id="loanTableBody">
+            <tr><td colspan="4" style="text-align:center;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+ <!-- Footer Start-->
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="single-footer-caption mb-30">
+                                    <!-- logo -->
+                                    <div class="footer-logo">
+                                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                    </div>
+                                    <div class="footer-pera">
+                                        <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing</p>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>New Products</h4>
+                                    <ul>
+                                        <li><a href="#">Woman Cloth</a></li>
+                                        <li><a href="#">Fashion Accessories</a></li>
+                                        <li><a href="#">Man Accessories</a></li>
+                                        <li><a href="#">Rubber made Toys</a></li>     
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Support</h4>
+                                    <ul>
+                                        <li><a href="#">Frequently Asked Questions</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#"> Privacy Policy</a></li>
+                                        <li><a href="#">Report a Payment Issue</a></li>     
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+  <!-- JS Imports -->
+  <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Loan Fetch Script -->
+  <script>
+    async function fetchMyLoans() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("You must log in first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:5009/api/loans/myloans", {
+          method: "GET",
+          headers: { "Authorization": `Bearer ${token}` },
+        });
+
+        const data = await res.json();
+        const tbody = document.getElementById("loanTableBody");
+        tbody.innerHTML = "";
+
+        if (res.ok && data.length > 0) {
+          data.forEach(loan => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td data-label="Amount">₦${loan.amount}</td>
+              <td data-label="Purpose">${loan.purpose}</td>
+              <td data-label="Status"><span class="status ${loan.status?.toLowerCase() || "pending"}">${loan.status || "Pending"}</span></td>
+              <td data-label="Date Applied">${new Date(loan.createdAt).toLocaleDateString()}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        } else {
+          tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No loan applications found.</td></tr>`;
+        }
+      } catch (error) {
+        console.error(error);
+        alert("⚠ Failed to fetch your loans. Please try again.");
+      }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    });
+
+    fetchMyLoans();
+  </script>
+</body>
+</html>

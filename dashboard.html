@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+      <span class="navbar-brand">Loan Dashboard</span>
+      <button class="btn btn-outline-light" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 id="welcomeUser" class="mb-4">Welcome!</h2>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">💰 My Loans</h5>
+            <p class="card-text">View your loan applications and their status.</p>
+            <a href="myloans.html" class="btn btn-primary">View Loans</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">⚙️ Account Settings</h5>
+            <p class="card-text">Manage your personal account details.</p>
+            <a href="#" class="btn btn-secondary">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

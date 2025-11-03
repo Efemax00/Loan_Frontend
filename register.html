@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f6fb;
+      overflow-y: auto;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+      width: 420px;
+      margin: 30px 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #1a1a1a;
+    }
+
+    p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 36%;
+      color: #777;
+      cursor: pointer;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #4a4aff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #3d3df3;
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 20px;
+      color: #555;
+    }
+
+    .bottom-text a {
+      text-decoration: none;
+      color: #4a4aff;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create Account</h2>
+    <p>Fill in the details to register your account</p>
+
+    <form>
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="Full Name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="Email Address" required />
+
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required />
+        <i>👁</i>
+      </div>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+
+      <label for="country">Country of Origin</label>
+      <input type="text" id="country" placeholder="Country of Origin" required />
+
+      <label for="state">State of Origin</label>
+      <input type="text" id="state" placeholder="State of Origin" required />
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" required />
+
+      <label for="company">Company Name</label>
+      <input type="text" id="company" placeholder="Company you're working with" required />
+
+      <label for="tax">Tax Number or NIN</label>
+      <input type="text" id="tax" placeholder="Enter Tax Number or NIN" required />
+
+      <button class="btn" type="submit">Create Account</button>
+
+      <div class="bottom-text">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </form>
+  </div>
+  <script>
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const userData = {
+    name: document.getElementById("fullname").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+  };
+
+  try {
+    const res = await fetch("https://loan-backend-xahc.onrender.com/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Registration successful!");
+      window.location.href = "login.html";
+    } else {
+      alert(data.message || "Registration failed");
+    }
+  } catch (err) {
+    alert("Error connecting to server");
+  }
+});
+</script>
+</body>
+</html>

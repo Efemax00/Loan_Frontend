@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apply - Financial Services</title>
+
+  <!-- Site CSS from index.html -->
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* Keep your original form styling */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: transparent;
+      color: #1a1a1a;
+    }
+
+    /* Page layout around the form */
+    .apply-area {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('assets/img/hero/h1_hero.jpg') center/cover no-repeat;
+      padding: 80px 20px;
+    }
+
+    /* Keep card same as before */
+    .card {
+      background: #fff;
+      width: 900px;
+      max-width: 100%;
+      padding: 36px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(20,20,40,0.06);
+    }
+
+    .card h1 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .card p.lead {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 22px;
+      font-size: 15px;
+    }
+
+    form.apply-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #374151;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #e6e9f0;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+      color: #111827;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+
+    .small-note {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+
+    .row-inline {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .btn {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(180deg,#6f62ff,#4a4aff);
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover { opacity: 0.96; }
+
+    .note-bottom {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 14px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      form.apply-form { grid-template-columns: 1fr; }
+      .card { padding: 22px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header copied from index.html -->
+  <header>
+    <div class="header-area header-transparent">
+      <div class="main-header header-sticky">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-xl-2 col-lg-2 col-md-1">
+              <div class="logo">
+                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+              </div>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10">
+              <div class="menu-main d-flex align-items-center justify-content-end">
+                <div class="main-menu f-right d-none d-lg-block">
+                  <nav>
+                    <ul id="navigation">
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="dashboard.html" id="dashboardLink" style="display:none;">Dashboard</a></li>
+                      <li><a href="services.html">Services</a></li>
+                      <li><a href="blog.html">Blog</a></li>
+                      <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <div class="header-right-btn f-right d-none d-lg-block">
+                  <a href="#" class="btn header-btn">+234 902 786 7891</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="mobile_menu d-block d-lg-none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main form area -->
+  <main>
+    <section class="apply-area">
+      <div class="card">
+        <h1>Application Form</h1>
+        <p class="lead">Complete this form to apply — provide accurate details so we can process your request quickly.</p>
+
+        <!-- Original form preserved -->
+        <form class="apply-form" id="applyForm">
+          <div>
+            <label for="fullname">Full Name</label>
+            <input id="fullname" name="fullname" type="text" placeholder="Jane Doe" required>
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required>
+          </div>
+
+          <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="+2348012345678" required>
+          </div>
+
+          <div>
+            <label for="dob">Date of Birth</label>
+            <input id="dob" name="dob" type="date" required>
+          </div>
+
+          <div>
+            <label for="country">Country of Origin</label>
+            <input id="country" name="country" type="text" placeholder="Country" required>
+          </div>
+
+          <div>
+            <label for="state">State of Origin</label>
+            <input id="state" name="state" type="text" placeholder="State" required>
+          </div>
+
+          <div>
+            <label for="company">Company (optional)</label>
+            <input id="company" name="company" type="text" placeholder="Company you're working with">
+          </div>
+
+          <div>
+            <label for="tax">Tax Number / NIN</label>
+            <input id="tax" name="tax" type="text" placeholder="Tax number or NIN" required>
+          </div>
+
+          <div class="full">
+            <label for="address">Residential Address</label>
+            <input id="address" name="address" type="text" placeholder="Street, City, Postal code" required>
+          </div>
+
+          <div>
+            <label for="employment">Employment Status</label>
+            <select id="employment" name="employment" required>
+              <option value="" disabled selected>Select status</option>
+              <option>Employed - Full Time</option>
+              <option>Employed - Part Time</option>
+              <option>Self-employed</option>
+              <option>Freelancer</option>
+              <option>Student</option>
+              <option>Unemployed</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="income">Monthly Income (optional)</label>
+            <input id="income" name="income" type="number" placeholder="e.g. 50000">
+          </div>
+
+          <div class="full">
+            <label for="loanAmount">Loan Amount Requested</label>
+            <input id="loanAmount" name="loanAmount" type="number" placeholder="Amount (NGN)" required>
+            <div class="small-note">Enter the amount you wish to apply for.</div>
+          </div>
+
+          <div class="full">
+            <label for="purpose">Purpose of Loan / Application Note</label>
+            <textarea id="purpose" name="purpose" placeholder="Describe why you are applying..." required></textarea>
+          </div>
+
+          <div>
+            <label for="idUpload">Upload ID (optional)</label>
+            <input id="idUpload" name="idUpload" type="file" accept=".png,.jpg,.jpeg,.pdf">
+            <div class="small-note">PNG/JPG/PDF. Optional for now.</div>
+          </div>
+
+          <div>
+            <label for="ref">Referrer / Source (optional)</label>
+            <input id="ref" name="ref" type="text" placeholder="How did you hear about us?">
+          </div>
+
+          <div class="full row-inline" style="justify-content:space-between; align-items:center; margin-top:6px;">
+            <label class="checkbox"><input type="checkbox" id="agree" required> I agree to the <a href="#" style="color:#4a4aff; text-decoration:none;">terms and conditions</a></label>
+            <button class="btn" type="submit">Submit Application</button>
+          </div>
+
+          <div class="note-bottom">
+            After submitting, our team will review and contact you within 48 hours.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer copied from index.html -->
+  <footer>
+    <div class="footer-area">
+      <div class="container">
+        <div class="footer-bottom">
+          <div class="row d-flex align-items-center justify-content-between">
+            <div class="col-xl-10 col-lg-10">
+              <div class="footer-copy-right">
+                <p>© 2025 Financial Services. All rights reserved.</p>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+              <div class="footer-social f-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-globe"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS from index.html -->
+  <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.slicknav.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/slick.min.js"></script>
+  <script src="assets/js/wow.min.js"></script>
+  <script src="assets/js/animated.headline.js"></script>
+  <script src="assets/js/jquery.magnific-popup.js"></script>
+  <script src="assets/js/jquery.nice-select.min.js"></script>
+  <script src="assets/js/jquery.sticky.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/jquery.form.js"></script>
+  <script src="assets/js/jquery.validate.min.js"></script>
+  <script src="assets/js/mail-script.js"></script>
+  <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  const dashboardLink = document.getElementById("dashboardLink");
+
+  // Show or hide dashboard link on page load
+  if (token) {
+    dashboardLink.style.display = "inline-block";
+  } else {
+    dashboardLink.style.display = "none";
+  }
+});
+
+document.getElementById("applyForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("You need to log in first!");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const loanData = {
+    fullname: document.getElementById("fullname").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    dob: document.getElementById("dob").value,
+    country: document.getElementById("country").value,
+    state: document.getElementById("state").value,
+    company: document.getElementById("company").value,
+    tax: document.getElementById("tax").value,
+    address: document.getElementById("address").value,
+    employment: document.getElementById("employment").value,
+    income: document.getElementById("income").value,
+    amount: document.getElementById("loanAmount").value,
+    purpose: document.getElementById("purpose").value,
+  };
+
+  try {
+    const res = await fetch("https://loan-backend-xahc.onrender.com/api/loans/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(loanData),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("✅ Loan application submitted successfully!");
+      e.target.reset();
+    } else {
+      alert(data.message || "❌ Failed to submit loan.");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("⚠ Error connecting to server. Please try again.");
+  }
+});
+</script>
+</body>
+</html>
