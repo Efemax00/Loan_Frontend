@@ -113,6 +113,45 @@
       color: #4a4aff;
       font-weight: 500;
     }
+
+    .password-group {
+      position: relative;
+      width: 100%;
+      max-width: 400px; /* optional */
+   }
+
+   .password-group input {
+     width: 100%;
+     padding: 12px 40px 12px 12px;
+     border: 1px solid #ccc;
+     border-radius: 8px;
+     font-size: 16px;
+     outline: none;
+     transition: border 0.2s ease;
+   }
+
+   .password-group input:focus {
+     border-color: #4a4aff;
+   }
+
+   .password-group .toggle-eye {
+     position: absolute;
+     right: 12px;
+     top: 50%;
+     transform: translateY(-50%);
+     cursor: pointer;
+     font-size: 18px;
+     user-select: none;
+   }
+
+  /* Make icon easier to tap on mobile */
+  @media (max-width: 768px) {
+  .password-group .toggle-eye {
+    font-size: 22px;
+    right: 16px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -127,10 +166,11 @@
       </div>
 
       <label for="password">Password</label>
-      <div class="input-group">
+      <div class="input-group password-group">
         <input type="password" id="password" placeholder="Password" required />
-        <i>👁</i>
-      </div>
+      <i id="togglePassword" class="toggle-eye">👁</i>
+     </div>
+
 
       <div class="options">
         <label><input type="checkbox" /> Remember me</label>
@@ -145,6 +185,17 @@
     </form>
   </div>
   <script>
+// ✅ Password toggle logic (runs immediately)
+const togglePassword = document.querySelector("#togglePassword");
+const passwordInput = document.querySelector("#password");
+
+togglePassword.addEventListener("click", () => {
+  const isPassword = passwordInput.getAttribute("type") === "password";
+  passwordInput.setAttribute("type", isPassword ? "text" : "password");
+  togglePassword.textContent = isPassword ? "🙈" : "👁";
+});
+
+// ✅ Form submit logic
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async (e) => {
@@ -163,6 +214,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
+
     if (res.ok) {
       localStorage.setItem("token", data.token);
       alert("Login successful!");
@@ -171,11 +223,10 @@ form.addEventListener("submit", async (e) => {
       alert(data.message || "Login failed");
     }
   } catch (err) {
-  console.error("⚠️ Fetch failed:", err.message);
-  console.error("Possible causes: Backend not running, CORS issue, or bad URL.");
-  console.error("🔍 Full error object:", err);
-  alert("Error connecting to server — check console for details");
-}
+    console.error("⚠️ Fetch failed:", err.message);
+    console.error("Possible causes: Backend not running, CORS issue, or bad URL.");
+    alert("Error connecting to server — check console for details");
+  }
 });
 </script>
 </body>
