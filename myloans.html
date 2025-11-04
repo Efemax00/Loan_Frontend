@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="assets/css/nice-select.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
   <style>
@@ -41,12 +42,9 @@
       box-shadow: 0 5px 25px rgba(0,0,0,0.05);
       max-width: 2000px;
       margin: 0 auto;
-
-      /* 👇 Add these lines */
       word-wrap: break-word;
       overflow-wrap: anywhere;
       white-space: normal;
-
     }
 
     .loan-card h3 {
@@ -104,6 +102,32 @@
       background: #2f2fbd;
     }
 
+    .mobile-nav {
+      display: none;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      width: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 12px 15px;
+      color: #222;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mobile-nav a:hover {
+      background: #f0f0ff;
+      color: #4a4aff;
+    }
+
     @media (max-width: 768px) {
       .loan-card { padding: 20px; }
       table, thead, tbody, th, td, tr { display: block; }
@@ -120,7 +144,74 @@
         color: #555;
         margin-bottom: 5px;
       }
+
+      /* Show hamburger only on small screens */
+      .hamburger { display: block; }
+      .main-menu, .header-right-btn { display: none !important; }
     }
+
+    /* 🔹 Mobile Hamburger Menu - top right */
+.mobile-menu-container {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+}
+
+.menu-btn {
+  background: #4a4aff;
+  color: #fff;
+  font-size: 26px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.menu-btn:hover {
+  background: #2f2fbd;
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 180px;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+}
+
+.mobile-nav a:hover {
+  background: #f0f0ff;
+  color: #4a4aff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide hamburger on large screens */
+@media (min-width: 992px) {
+  .mobile-menu-container {
+    display: none;
+  }
+}
+
   </style>
 </head>
 
@@ -131,38 +222,48 @@
       <div class="main-header header-sticky">
         <div class="container-fluid">
           <div class="row align-items-center">
-             <!-- Logo -->
-              <div class="col-xl-2 col-lg-2 col-md-1">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/img/logo/loan.png" alt=""></a>
-               </div>
-                </div> 
-            <div class="col-xl-10 col-lg-10 col-md-10">
-              <div class="menu-main d-flex align-items-center justify-content-end">
-                <div class="main-menu f-right d-none d-lg-block">
-                  <nav>
-                    <ul id="navigation">
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="about.html">About</a></li>
-                      <li><a href="services.html">Services</a></li>
-                      <li class="active"><a href="myloans.html">My Loans</a></li>
-                      <li><a href="apply.html">Apply</a></li>
-                      <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                  </nav>
-                </div>
-                <div class="header-right-btn f-right d-none d-lg-block">
-                  <button id="logoutBtn" class="logout-btn">Logout</button>
-                </div>
+            <!-- Logo -->
+            <div class="col-6 col-md-2">
+              <div class="logo">
+                <a href="index.html"><img src="assets/img/logo/loan.png" alt=""></a>
               </div>
             </div>
-            <div class="col-12">
-              <div class="mobile_menu d-block d-lg-none"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+            <!-- ✅ Hamburger Menu (Mobile) -->
+<div class="mobile-menu-container">
+  <button id="menuBtn" class="menu-btn">☰</button>
+  <div id="mobileNav" class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="services.html">💼 Services</a>
+    <a href="apply.html">📝 Apply</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="#" id="logoutLink">🚪 Logout</a>
+  </div>
+</div>
+
+<div class="col-xl-10 col-lg-10 col-md-10 d-none d-lg-block">
+  <div class="menu-main d-flex align-items-center justify-content-end">
+    <div class="main-menu f-right">
+      <nav>
+        <ul id="navigation">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li class="active"><a href="myloans.html">My Loans</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="apply.html">Apply</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+    <div class="header-right-btn f-right">
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+  </div>
+</div>
+
   </header>
 
   <!-- Loans Table -->
@@ -187,82 +288,78 @@
     </div>
   </section>
 
- <!-- Footer Start-->
-        <div class="footer-area">
-            <div class="container">
-               <div class="footer-top footer-padding">
-                    <div class="row justify-content-between">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="single-footer-caption mb-30">
-                                   <!-- Logo -->
-                                   <div class="col-xl-2 col-lg-2 col-md-1">
-                                   <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/h.png" alt=""></a>
-                                    </div>
-                                  </div> 
-                                    <div class="footer-pera">
-                                        <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing</p>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>New Products</h4>
-                                    <ul>
-                                        <li><a href="#">Woman Cloth</a></li>
-                                        <li><a href="#">Fashion Accessories</a></li>
-                                        <li><a href="#">Man Accessories</a></li>
-                                        <li><a href="#">Rubber made Toys</a></li>     
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Support</h4>
-                                    <ul>
-                                        <li><a href="#">Frequently Asked Questions</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
-                                        <li><a href="#"> Privacy Policy</a></li>
-                                        <li><a href="#">Report a Payment Issue</a></li>     
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-                <div class="footer-bottom">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4">
-                            <!-- Footer Social -->
-                            <div class="footer-social f-right">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-               </div>
+  <!-- Footer -->
+  <div class="footer-area">
+    <div class="container">
+      <div class="footer-top footer-padding">
+        <div class="row justify-content-between">
+          <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+            <div class="single-footer-caption mb-50">
+              <div class="single-footer-caption mb-30">
+                <div class="logo">
+                  <a href="index.html"><img src="assets/img/logo/h.png" alt=""></a>
+                </div>
+                <div class="footer-pera">
+                  <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing</p>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            <div class="single-footer-caption mb-50">
+              <div class="footer-tittle">
+                <h4>New Products</h4>
+                <ul>
+                  <li><a href="#">Woman Cloth</a></li>
+                  <li><a href="#">Fashion Accessories</a></li>
+                  <li><a href="#">Man Accessories</a></li>
+                  <li><a href="#">Rubber made Toys</a></li>     
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <div class="single-footer-caption mb-50">
+              <div class="footer-tittle">
+                <h4>Support</h4>
+                <ul>
+                  <li><a href="#">Frequently Asked Questions</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Report a Payment Issue</a></li>     
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- Footer End-->
-    </footer>
-    <!-- Scroll Up -->
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+      </div>
+      <div class="footer-bottom">
+        <div class="row d-flex justify-content-between align-items-center">
+          <div class="col-xl-9 col-lg-8">
+            <div class="footer-copy-right">
+              <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This template is made with ❤️ by 
+                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4">
+            <div class="footer-social f-right">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fas fa-globe"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Scroll Up -->
+  <div id="back-top">
+    <a title="Go to Top" href="#"><i class="fas fa-level-up-alt"></i></a>
+  </div>
 
   <!-- JS Imports -->
   <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
@@ -270,51 +367,87 @@
   <script src="assets/js/main.js"></script>
 
   <!-- Loan Fetch Script -->
-  <script>
-    async function fetchMyLoans() {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("You must log in first!");
-        window.location.href = "login.html";
-        return;
-      }
-
-      try {
-        const res = await fetch("http://localhost:5009/api/loans/myloans", {
-          method: "GET",
-          headers: { "Authorization": `Bearer ${token}` },
-        });
-
-        const data = await res.json();
-        const tbody = document.getElementById("loanTableBody");
-        tbody.innerHTML = "";
-
-        if (res.ok && data.length > 0) {
-          data.forEach(loan => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-              <td data-label="Amount">₦${loan.amount}</td>
-              <td data-label="Purpose">${loan.purpose}</td>
-              <td data-label="Status"><span class="status ${loan.status?.toLowerCase() || "pending"}">${loan.status || "Pending"}</span></td>
-              <td data-label="Date Applied">${new Date(loan.createdAt).toLocaleDateString()}</td>
-            `;
-            tbody.appendChild(row);
-          });
-        } else {
-          tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No loan applications found.</td></tr>`;
-        }
-      } catch (error) {
-        console.error(error);
-        alert("⚠ Failed to fetch your loans. Please try again.");
-      }
+<script>
+  // 🔹 Fetch and display user loans
+  async function fetchMyLoans() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You must log in first!");
+      window.location.href = "login.html";
+      return;
     }
 
-    document.getElementById("logoutBtn").addEventListener("click", () => {
+    try {
+      const res = await fetch("https://loan-backend-xahc.onrender.com/api/loans/myloans", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+      const tbody = document.getElementById("loanTableBody");
+      tbody.innerHTML = "";
+
+      if (res.ok && data.length > 0) {
+        data.forEach(loan => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td data-label="Amount">₦${loan.amount}</td>
+            <td data-label="Purpose">${loan.purpose}</td>
+            <td data-label="Status">
+              <span class="status ${loan.status?.toLowerCase() || "pending"}">
+                ${loan.status || "Pending"}
+              </span>
+            </td>
+            <td data-label="Date Applied">${new Date(loan.createdAt).toLocaleDateString()}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      } else {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No loan applications found.</td></tr>`;
+      }
+    } catch (error) {
+      console.error(error);
+      alert("⚠ Failed to fetch your loans. Please try again.");
+    }
+  }
+
+  // 🔹 Logout buttons (desktop + mobile)
+  const logoutDesktop = document.getElementById("logoutBtn");
+  const logoutMobile = document.getElementById("logoutLink");
+
+  if (logoutDesktop) {
+    logoutDesktop.addEventListener("click", () => {
       localStorage.removeItem("token");
       window.location.href = "login.html";
     });
+  }
 
-    fetchMyLoans();
-  </script>
+  if (logoutMobile) {
+    logoutMobile.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    });
+  }
+
+  // 🔹 Mobile menu toggle
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      mobileNav.style.display = mobileNav.style.display === "block" ? "none" : "block";
+    });
+  }
+
+  // Close mobile menu when a link is clicked
+  document.querySelectorAll(".mobile-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileNav.style.display = "none";
+    });
+  });
+
+  // Fetch loans on page load
+  fetchMyLoans();
+</script>
 </body>
 </html>

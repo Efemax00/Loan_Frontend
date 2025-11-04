@@ -40,6 +40,12 @@
       });
     };
 
+/* ⚙️ Fix: Preserve localStorage when navigating to Dashboard */
+  $(document).on("click", ".slicknav_nav a[href='dashboard.html']", function (e) {
+  e.preventDefault(); // Stop SlickNav’s own behavior
+  window.location.href = "dashboard.html"; // Navigate normally
+ });
+
 
 /* 4. MainSlider-1 */
     // h1-hero-active
@@ -189,6 +195,30 @@
         });
       }
 
+/* 13. Dashboard visibility check */
+$(document).ready(function () {
+  const token = localStorage.getItem("token");
+  console.log("🔍 Checking dashboard visibility. Token:", token);
+
+  // Make sure you have these IDs in your navbar HTML
+  const dashboardLink = document.getElementById("dashboardLink");
+  const loginLink = document.getElementById("loginLink");
+  const logoutLink = document.getElementById("logoutLink");
+
+  if (dashboardLink && loginLink && logoutLink) {
+    if (token) {
+      dashboardLink.style.display = "block";
+      logoutLink.style.display = "block";
+      loginLink.style.display = "none";
+    } else {
+      dashboardLink.style.display = "none";
+      logoutLink.style.display = "none";
+      loginLink.style.display = "block";
+    }
+  } else {
+    console.warn("⚠️ Some navbar elements not found. Check your HTML IDs.");
+  }
+});
 
 
 

@@ -13,7 +13,8 @@
     </div>
   </nav>
 
-  <div class="container mt-5">
+  <!-- ✅ Wrap main content in a hidden div -->
+  <div class="container mt-5" id="dashboardContent" style="display:none;">
     <h2 id="welcomeUser" class="mb-4">Welcome!</h2>
 
     <div class="row">
@@ -37,6 +38,48 @@
       </div>
     </div>
   </div>
+
+  <!-- ✅ Token check script (place before dashboard.js) -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please log in to access your dashboard.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    // Verify token with backend
+    fetch("https://loan-backend-xahc.onrender.com/api/users/test", {
+      headers: { Authorization: "Bearer " + token }
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Token invalid");
+        return res.json();
+      })
+      .then(data => {
+        console.log("✅ Verified user:", data);
+        document.getElementById("dashboardContent").style.display = "block";
+        document.getElementById("welcomeUser").textContent = `Welcome, ${data.name || "User"}!`;
+      })
+      .catch(err => {
+        console.error("❌ Invalid or expired token:", err);
+        localStorage.removeItem("token");
+        alert("Session expired. Please log in again.");
+        window.location.href = "login.html";
+      });
+
+    // Logout button
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      alert("Logged out successfully.");
+      window.location.href = "index.html";
+    });
+  });
+  </script>
+
+  <!-- Your existing script -->
   <script src="js/dashboard.js"></script>
 </body>
 </html>

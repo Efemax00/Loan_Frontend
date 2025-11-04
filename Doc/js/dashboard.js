@@ -1,13 +1,19 @@
+console.log("🌍 Current origin:", window.location.origin);
+console.log("🔑 Token before anything:", localStorage.getItem("token"));
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   console.log("📱 Dashboard loaded on:", navigator.userAgent);
   console.log("🔑 Token found:", token);
 
+   console.log("🔍 Checking token on dashboard:", token);
+   alert("Token on dashboard: " + token);
+
   if (!token) {
-    alert("Session expired. Please log in again.");
-    window.location.href = "login.html";
-    return;
-  }
+  console.warn("No token found — likely different origin.");
+  alert("Please open dashboard from the same site where you logged in.");
+  return;
+}
+
 
   // Load user info safely
   const user = JSON.parse(localStorage.getItem("user"));
